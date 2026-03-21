@@ -1,0 +1,418 @@
+/* ─── DEMO SECTION ──────────────────────────────────────────── */
+.section {
+  padding: clamp(80px, 10vw, 128px) 0;
+  background: var(--bg-secondary);
+  overflow: hidden;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 56px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(40px, 5vw, 64px);
+}
+
+/* ─── HEADER ────────────────────────────────────────────────── */
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 560px;
+}
+
+.tag {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-purple-light);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 52px);
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -1px;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.sub {
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.5vw, 16px);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ─── STATS ─────────────────────────────────────────────────── */
+.statsRow {
+  display: flex;
+  gap: clamp(24px, 4vw, 56px);
+  padding: clamp(20px, 3vw, 32px) clamp(20px, 3vw, 40px);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  width: fit-content;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statNum {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3vw, 44px);
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.statLabel {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.3px;
+}
+
+/* ─── PANELS ────────────────────────────────────────────────── */
+.panels {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr 1fr;
+  gap: clamp(12px, 2vw, 20px);
+  align-items: stretch;
+}
+
+.panel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* ─── LIVE FEED ─────────────────────────────────────────────── */
+.feedWrap {
+  padding: clamp(16px, 2.5vw, 24px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.feedHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.feedTitle {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.feedLive {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  color: #4ADE80;
+  letter-spacing: 1px;
+}
+
+.liveDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ADE80;
+  animation: livePulse 1.5s ease-in-out infinite;
+}
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.feedList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  overflow: hidden;
+}
+
+.feedRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 10px 12px;
+}
+
+[data-theme="light"] .feedRow {
+  background: rgba(0,0,0,0.02);
+}
+
+.feedFlag { font-size: 18px; flex-shrink: 0; }
+
+.feedInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.feedName {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.feedBank {
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.feedAmt {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ─── VIDEO PANEL ───────────────────────────────────────────── */
+.videoPanel {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.videoFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  background: linear-gradient(160deg, #0E0C18 0%, #080808 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+[data-theme="light"] .videoFrame {
+  background: linear-gradient(160deg, #F0EEFF 0%, #F8F7FF 100%);
+}
+
+.videoNoise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events: none;
+}
+
+.globeSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.arcSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.globeNode {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background: rgba(10,9,16,0.85);
+  border: 1px solid rgba(123,79,191,0.3);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  z-index: 2;
+}
+
+[data-theme="light"] .globeNode {
+  background: rgba(255,255,255,0.9);
+  border-color: rgba(123,79,191,0.2);
+  box-shadow: 0 4px 16px rgba(123,79,191,0.15);
+}
+
+.videoCenter {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.videoCenterRing {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent-purple), var(--accent-purple-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 40px rgba(123,79,191,0.5);
+}
+
+.videoCenterLogo {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  color: white;
+}
+
+.videoCenterLabel {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.5px;
+}
+
+[data-theme="light"] .videoCenterLabel {
+  color: var(--text-secondary);
+}
+
+/* ─── SEND FLOW ─────────────────────────────────────────────── */
+.sendFlow {
+  padding: clamp(16px, 2.5vw, 24px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sendFlowTitle {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.sendStep {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  background: rgba(255,255,255,0.02);
+  transition: border-color 0.3s, background 0.3s;
+}
+
+[data-theme="light"] .sendStep {
+  background: rgba(0,0,0,0.02);
+}
+
+.sendStepActive {
+  border-color: rgba(123,79,191,0.4);
+  background: rgba(123,79,191,0.06);
+}
+
+.sendStepDone {
+  border-color: rgba(74,222,128,0.25);
+  background: rgba(74,222,128,0.04);
+}
+
+.sendStepIcon {
+  font-size: 18px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.04);
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+[data-theme="light"] .sendStepIcon {
+  background: rgba(0,0,0,0.04);
+}
+
+.sendStepInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.sendStepLabel {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.sendStepDetail {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.sendStepCheck {
+  font-size: 13px;
+  color: #4ADE80;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+/* ─── RESPONSIVE ────────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .panels {
+    grid-template-columns: 1fr 1fr;
+  }
+  .videoPanel {
+    grid-column: 1 / -1;
+    order: -1;
+  }
+  .videoFrame { aspect-ratio: 16/7; }
+}
+
+@media (max-width: 640px) {
+  .panels { grid-template-columns: 1fr; }
+  .videoPanel { order: 0; }
+  .videoFrame { aspect-ratio: 4/3; }
+  .statsRow {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+}

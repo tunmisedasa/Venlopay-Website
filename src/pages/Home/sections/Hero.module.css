@@ -1,0 +1,585 @@
+/* ── Hero ─────────────────────────────────────────────────── */
+.hero {
+  min-height: 100svh;
+  background: var(--bg-primary);
+  position: relative; overflow: hidden;
+  display: flex; align-items: center;
+}
+
+.noise {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+.glow1 {
+  position: absolute; top: -20%; right: -10%;
+  width: min(700px, 100vw); height: min(700px, 100vw);
+  background: radial-gradient(ellipse, rgba(123,79,191,0.18) 0%, transparent 65%);
+  pointer-events: none; z-index: 0;
+}
+
+.glow2 {
+  position: absolute; bottom: -20%; left: -10%;
+  width: min(500px, 80vw); height: min(500px, 80vw);
+  background: radial-gradient(ellipse, rgba(91,47,159,0.1) 0%, transparent 65%);
+  pointer-events: none; z-index: 0;
+}
+
+.inner {
+  position: relative; z-index: 1;
+  width: 100%; max-width: 1200px; margin: 0 auto;
+  padding: clamp(110px, 14vw, 148px) clamp(20px, 5vw, 56px) clamp(72px, 9vw, 100px);
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: clamp(40px, 6vw, 80px);
+  align-items: center; min-height: 100svh;
+}
+
+/* ── Left ─────────────────────────────────────────────────── */
+.left {
+  display: flex; flex-direction: column;
+  gap: clamp(20px, 2.8vw, 32px); max-width: 560px;
+}
+
+.eyebrow {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-body); font-size: 12px; font-weight: 500;
+  color: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 50px; padding: 6px 14px; width: fit-content;
+}
+
+.eyebrowDot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--accent-purple);
+  box-shadow: 0 0 8px rgba(123,79,191,0.9); flex-shrink: 0;
+  animation: blink 2.2s ease-in-out infinite;
+}
+
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.headline {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: clamp(38px, 5vw, 72px);
+  line-height: 1.0; color: var(--text-primary);
+  letter-spacing: -1px; margin: 0;
+}
+
+.headlineAccent { color: var(--accent-purple-light); }
+
+.sub {
+  font-family: var(--font-body); font-size: clamp(14px, 1.6vw, 17px);
+  color: var(--text-secondary); line-height: 1.7; max-width: 440px; margin: 0;
+}
+
+.ctaRow { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+
+.primaryBtn {
+  background: var(--cta-bg); color: var(--cta-color);
+  font-family: var(--font-body); font-size: 14px; font-weight: 600;
+  padding: 13px 28px; border-radius: 50px; border: none; cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+}
+.primaryBtn:hover { background: var(--cta-hover); transform: translateY(-1px); }
+
+.ghostBtn {
+  background: transparent; color: rgba(255,255,255,0.6);
+  font-family: var(--font-body); font-size: 14px; font-weight: 400;
+  padding: 13px 20px; border-radius: 50px;
+  border: 1px solid rgba(255,255,255,0.12);
+  text-decoration: none; display: inline-flex; align-items: center;
+  transition: border-color 0.2s, color 0.2s;
+}
+.ghostBtn:hover { border-color: rgba(255,255,255,0.3); color: white; }
+
+.stats {
+  display: flex; gap: clamp(20px, 3vw, 36px);
+  padding-top: 8px; border-top: 1px solid rgba(255,255,255,0.07);
+}
+.stat { display: flex; flex-direction: column; gap: 3px; }
+.statN {
+  font-family: var(--font-display); font-size: clamp(20px, 2.5vw, 28px);
+  font-weight: 800; color: var(--text-primary); line-height: 1;
+}
+.statL { font-family: var(--font-body); font-size: 10px; color: var(--text-muted); letter-spacing: 0.3px; }
+
+/* ── Right / Phone scene ──────────────────────────────────── */
+.right { display: flex; justify-content: center; align-items: center; }
+
+.phoneScene {
+  position: relative;
+  /* Fixed size — phone is always this big, we scale it down on smaller screens */
+  width: 300px;
+  height: 620px;
+  flex-shrink: 0;
+  display: flex; justify-content: center; align-items: center;
+}
+
+/* Floating notification chips */
+.chip2 {
+  position: absolute;
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(8,7,14,0.94);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 50px; padding: 7px 13px 7px 8px;
+  z-index: 10; white-space: nowrap; pointer-events: none;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.5), 0 0 0 0.5px rgba(255,255,255,0.04);
+}
+
+.chipTL { top: 60px; left: -60px; }
+.chipBL { top: 380px; left: -60px; }
+.chipTR { top: 160px; right: -60px; }
+.chipBR { top: 460px; right: -60px; }
+
+.chipFlag {
+  font-size: 14px; width: 24px; height: 24px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.07); border-radius: 50%; flex-shrink: 0;
+}
+.chipInfo { display: flex; flex-direction: column; gap: 1px; }
+.chipLabel { font-family: var(--font-body); font-size: 10px; font-weight: 600; color: white; }
+.chipAmt   { font-family: var(--font-body); font-size: 8px; color: rgba(255,255,255,0.45); }
+
+/* Phone glow */
+.phoneGlow {
+  position: absolute; inset: -60px;
+  background: radial-gradient(ellipse 75% 60% at 50% 50%, rgba(123,79,191,0.28) 0%, transparent 65%);
+  pointer-events: none; z-index: 0;
+  animation: glowPulse 4.5s ease-in-out infinite;
+}
+@keyframes glowPulse { 0%,100%{opacity:0.6} 50%{opacity:1} }
+
+/* ── Phone shell ──────────────────────────────────────────── */
+/*
+  Base size: 270px × 585px — proper ~9:19.5 iPhone ratio
+  All screen content uses px values designed for this exact size.
+  On smaller viewports we scale the whole phone down with transform.
+*/
+.phone {
+  position: relative; z-index: 1;
+  width: 270px;
+  height: 585px;
+  background: linear-gradient(175deg, #2A2535 0%, #1A1525 30%, #0E0B18 70%, #080610 100%);
+  border-radius: 44px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.12),
+    0 0 0 2px rgba(0,0,0,0.8),
+    0 2px 0 2px rgba(255,255,255,0.06),
+    0 60px 120px rgba(0,0,0,0.8),
+    0 20px 40px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.15),
+    inset 0 -1px 0 rgba(0,0,0,0.5);
+  animation: phoneFloat 5.5s ease-in-out infinite;
+  overflow: visible;
+  flex-shrink: 0;
+}
+@keyframes phoneFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+
+/* Side buttons */
+.phoneSideLeft {
+  position: absolute; left: -3px; top: 100px;
+  width: 3px; height: 32px;
+  background: linear-gradient(180deg, #2A2535, #1A1525);
+  border-radius: 2px 0 0 2px;
+  box-shadow: -1px 0 0 rgba(255,255,255,0.06);
+}
+.phoneSideRight {
+  position: absolute; right: -3px; top: 120px;
+  width: 3px; height: 56px;
+  background: linear-gradient(180deg, #2A2535, #1A1525);
+  border-radius: 0 2px 2px 0;
+  box-shadow: 1px 0 0 rgba(255,255,255,0.06);
+}
+
+/* Dynamic island */
+.dynamicIsland {
+  position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+  width: 90px; height: 28px;
+  background: #050408;
+  border-radius: 20px; z-index: 20;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.06), inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* Screen area */
+.phoneScreen {
+  position: absolute;
+  top: 6px; left: 6px; right: 6px; bottom: 6px;
+  border-radius: 38px;
+  overflow: hidden;
+  background: #080610;
+}
+
+/* Reflection overlay */
+.phoneReflection {
+  position: absolute; inset: 0;
+  border-radius: 44px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, transparent 40%, transparent 60%, rgba(255,255,255,0.02) 100%);
+  pointer-events: none; z-index: 30;
+}
+
+/* ══════════════════════════════════════════════════════════
+   SCREEN CONTENT — all px values designed for 270px phone
+   ══════════════════════════════════════════════════════════ */
+.screen {
+  position: absolute; inset: 0;
+  padding-bottom: 52px;
+  display: flex; flex-direction: column;
+  background: linear-gradient(180deg, #0E0B1A 0%, #080610 100%);
+  overflow: hidden;
+}
+
+/* Status bar */
+.statusBar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 16px 2px;
+  flex-shrink: 0;
+}
+.statusTime { font-family: var(--font-body); font-size: 10px; font-weight: 700; color: white; }
+.statusIcons { display: flex; gap: 3px; align-items: center; font-size: 8px; color: rgba(255,255,255,0.6); }
+
+/* App bar */
+.appBar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 2px 14px 8px; flex-shrink: 0;
+}
+.greet { font-family: var(--font-body); font-size: 9px; color: rgba(255,255,255,0.4); margin-bottom: 1px; }
+.userName { font-family: var(--font-body); font-size: 12px; font-weight: 700; color: white; }
+
+.avatarWrap { position: relative; }
+.avatar {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: linear-gradient(135deg, #7B4FBF, #5B2F9F);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 700; color: white; font-family: var(--font-body);
+  box-shadow: 0 0 0 2px rgba(123,79,191,0.3);
+}
+.notifDot {
+  position: absolute; top: -1px; right: -1px;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #F87171; border: 1.5px solid #0E0B1A;
+}
+
+/* Balance card */
+.balCard {
+  margin: 0 12px 8px;
+  border-radius: 14px;
+  position: relative; overflow: hidden; flex-shrink: 0;
+  background: linear-gradient(135deg, #2D1B4E 0%, #1E1040 50%, #130B2E 100%);
+  border: 1px solid rgba(123,79,191,0.25);
+  box-shadow: 0 6px 24px rgba(123,79,191,0.2), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+.balCardInner { padding: 10px 13px 10px; position: relative; z-index: 1; }
+.balCardGlow {
+  position: absolute; top: -30px; right: -30px;
+  width: 100px; height: 100px;
+  background: radial-gradient(circle, rgba(155,111,223,0.3) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.balTop { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; }
+.balLabel { font-family: var(--font-body); font-size: 8px; font-weight: 600; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; }
+.balBadge {
+  font-family: var(--font-body); font-size: 8px; font-weight: 600;
+  color: #4ADE80; background: rgba(74,222,128,0.12);
+  border: 1px solid rgba(74,222,128,0.25);
+  padding: 1px 6px; border-radius: 50px;
+  animation: blink 2.2s ease-in-out infinite;
+}
+.balAmt { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: white; line-height: 1.15; }
+
+/* Quick actions */
+.quickRow { display: flex; gap: 4px; padding: 0 12px 8px; flex-shrink: 0; }
+.quickBtn { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.quickIconWrap {
+  width: 34px; height: 34px; border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+}
+.quickIcon { font-size: 13px; font-weight: 700; }
+.quickLabel { font-family: var(--font-body); font-size: 8px; color: rgba(255,255,255,0.45); font-weight: 500; }
+
+/* Transactions */
+.txSection { display: flex; flex-direction: column; gap: 4px; padding: 0 12px; flex: 1; overflow: hidden; }
+.txSectionHead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px; }
+.txHeading { font-family: var(--font-body); font-size: 8px; font-weight: 600; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 1px; }
+.txSeeAll { font-family: var(--font-body); font-size: 8px; color: var(--accent-purple-light); }
+.txRow {
+  display: flex; align-items: center; gap: 7px;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 10px; padding: 6px 8px;
+}
+.txIconWrap {
+  width: 24px; height: 24px; border-radius: 7px;
+  background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.txFlag { font-size: 12px; }
+.txInfo { display: flex; flex-direction: column; gap: 1px; flex: 1; }
+.txBank { font-family: var(--font-body); font-size: 10px; font-weight: 600; color: white; }
+.txSub  { font-family: var(--font-body); font-size: 8px; color: rgba(255,255,255,0.3); }
+.txAmtDep { font-family: var(--font-body); font-size: 10px; font-weight: 700; color: #4ADE80; }
+.txAmtOut { font-family: var(--font-body); font-size: 10px; font-weight: 700; color: #F87171; }
+
+/* Bottom nav */
+.bottomNav {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 52px;
+  background: rgba(10,8,20,0.97);
+  backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255,255,255,0.07);
+  display: flex; align-items: center;
+  padding: 0 4px 4px;
+}
+.navTab { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 5px 0; }
+.navIcon { font-size: 13px; color: rgba(255,255,255,0.25); }
+.navLabel { font-family: var(--font-body); font-size: 7px; color: rgba(255,255,255,0.25); }
+.navTabActive .navIcon { color: var(--accent-purple-light); }
+.navTabActive .navLabel { color: var(--accent-purple-light); }
+
+/* ── Send screen ──────────────────────────────────────────── */
+.sendHeader {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 6px 14px 4px; flex-shrink: 0;
+}
+.sendBack { font-size: 15px; color: rgba(255,255,255,0.5); }
+.sendTitle { font-family: var(--font-body); font-size: 12px; font-weight: 700; color: white; }
+
+.recipientRow {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 12px; padding: 8px 10px; margin: 0 12px 6px; flex-shrink: 0;
+}
+.recipientAvatar {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: linear-gradient(135deg, #3B82F6, #1D4ED8);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; font-weight: 700; color: white; font-family: var(--font-body); flex-shrink: 0;
+}
+.recipientInfo { display: flex; flex-direction: column; gap: 1px; flex: 1; }
+.recipientName { font-family: var(--font-body); font-size: 10px; font-weight: 700; color: white; }
+.recipientAcct { font-family: var(--font-body); font-size: 8px; color: rgba(255,255,255,0.35); }
+.recipientVerified { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+.recipientCheck { font-size: 11px; color: #4ADE80; }
+.recipientVerifiedLabel { font-family: var(--font-body); font-size: 6px; color: #4ADE80; font-weight: 600; }
+
+/* Amount input — this is the big number, keep it prominent but not screen-filling */
+.amtInputBox {
+  display: flex; align-items: baseline; justify-content: center; gap: 3px;
+  padding: 8px 16px 6px; flex-shrink: 0;
+}
+.amtCurrency { font-family: var(--font-display); font-size: 16px; font-weight: 700; color: rgba(255,255,255,0.4); }
+.amtBig { font-family: var(--font-display); font-size: 28px; font-weight: 800; color: white; line-height: 1; }
+.amtCurrencyCode { font-family: var(--font-body); font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.35); }
+
+.amountBox {
+  display: flex; flex-direction: column; gap: 0;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px; padding: 8px 11px; margin: 0 12px 8px; flex-shrink: 0;
+}
+.amtRow { display: flex; justify-content: space-between; align-items: center; padding: 4px 0; }
+.amtLabel { font-family: var(--font-body); font-size: 8px; color: rgba(255,255,255,0.35); }
+.amtVal { font-family: var(--font-body); font-size: 10px; font-weight: 700; color: white; }
+.amtDivider { height: 1px; background: rgba(255,255,255,0.05); }
+.amtReceive { font-family: var(--font-body); font-size: 10px; font-weight: 700; color: #4ADE80; }
+.amtRailBadge {
+  display: flex; align-items: center; gap: 3px;
+  font-family: var(--font-body); font-size: 8px; font-weight: 600; color: #60A5FA;
+}
+.amtEta { font-family: var(--font-body); font-size: 10px; font-weight: 600; color: #4ADE80; }
+.amtFeeGreen { font-family: var(--font-body); font-size: 8px; color: rgba(255,255,255,0.35); }
+
+.confirmBtn {
+  background: linear-gradient(135deg, #7B4FBF, #5B2F9F);
+  color: white; font-family: var(--font-body); font-size: 11px; font-weight: 700;
+  padding: 11px 16px; border-radius: 50px; border: none; cursor: pointer;
+  margin: 0 12px; display: flex; align-items: center; justify-content: center; gap: 5px;
+  box-shadow: 0 4px 16px rgba(123,79,191,0.4);
+  flex-shrink: 0;
+}
+.confirmArrow { font-size: 12px; }
+
+/* ── Success / Deposit confirmed screens ──────────────────── */
+.successScreen {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 6px; text-align: center; padding: 16px 14px;
+  background: linear-gradient(180deg, #0E0B1A 0%, #080610 100%);
+}
+.successRing {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: rgba(74,222,128,0.08); border: 2px solid rgba(74,222,128,0.3);
+  display: flex; align-items: center; justify-content: center;
+}
+.successRingInner {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, #22C55E, #16A34A);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(34,197,94,0.4);
+}
+.successCheck { font-size: 16px; color: white; font-weight: 700; }
+.successTitle { font-family: var(--font-display); font-size: 16px; font-weight: 800; color: white; }
+.successAmt { font-family: var(--font-display); font-size: 24px; font-weight: 800; color: white; }
+.successBank { font-family: var(--font-body); font-size: 9px; color: rgba(255,255,255,0.4); }
+.successRecipRow { display: flex; align-items: center; gap: 4px; }
+.successRecipFlag { font-size: 12px; }
+.successRecipName { font-family: var(--font-body); font-size: 9px; color: rgba(255,255,255,0.5); }
+.deliveredBadge {
+  display: flex; align-items: center; gap: 7px;
+  background: rgba(74,222,128,0.07); border: 1px solid rgba(74,222,128,0.18);
+  border-radius: 11px; padding: 8px 11px; width: 100%; margin-top: 2px;
+}
+.deliveredIcon { font-size: 14px; }
+.deliveredTitle { font-family: var(--font-body); font-size: 10px; font-weight: 700; color: white; text-align: left; }
+.deliveredSub   { font-family: var(--font-body); font-size: 8px; color: rgba(255,255,255,0.35); text-align: left; }
+
+/* ── Deposit screen ───────────────────────────────────────── */
+.depTabRow {
+  display: flex; gap: 4px; margin: 0 12px 8px;
+  background: rgba(255,255,255,0.04); border-radius: 10px; padding: 3px; flex-shrink: 0;
+}
+.depTab {
+  flex: 1; text-align: center; padding: 5px 0;
+  font-family: var(--font-body); font-size: 9px; font-weight: 600;
+  color: rgba(255,255,255,0.35); border-radius: 8px;
+}
+.depTabActive { background: rgba(123,79,191,0.25); color: var(--accent-purple-light); }
+
+.depSingleCoin {
+  display: flex; align-items: center; gap: 7px;
+  background: rgba(38,161,123,0.1); border: 1px solid rgba(38,161,123,0.25);
+  border-radius: 10px; padding: 8px 12px; margin: 0 12px 8px; flex-shrink: 0;
+}
+.depCoinDot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.depCoinLogoWrap {
+  width: 20px; height: 20px; border-radius: 50%;
+  overflow: hidden; flex-shrink: 0;
+  background: rgba(255,255,255,0.06);
+  display: flex; align-items: center; justify-content: center;
+}
+.depCoinLogoImg { width: 20px; height: 20px; border-radius: 50%; object-fit: cover; display: block; }
+.depCoinTicker { font-family: var(--font-body); font-size: 12px; font-weight: 700; color: white; }
+.depCoinName { font-family: var(--font-body); font-size: 10px; color: rgba(255,255,255,0.4); }
+
+.depNetRow {
+  display: flex; justify-content: space-between; align-items: center;
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px; padding: 8px 12px; margin: 0 12px 8px; flex-shrink: 0;
+}
+.depNetLabel { font-family: var(--font-body); font-size: 8px; color: rgba(255,255,255,0.35); text-transform: uppercase; letter-spacing: 0.8px; }
+.depNetPicker { display: flex; align-items: center; gap: 3px; }
+.depNetVal { font-family: var(--font-body); font-size: 11px; font-weight: 700; color: white; }
+.depNetChevron { font-size: 10px; color: rgba(255,255,255,0.35); }
+
+.qrContainer {
+  display: flex; justify-content: center; align-items: center;
+  border-radius: 10px; overflow: hidden;
+  width: 110px; height: 110px;
+  margin: 0 auto 8px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  position: relative; flex-shrink: 0;
+}
+.qrOverlayLogo {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 22px; height: 22px; border-radius: 6px;
+  background: #7B4FBF; display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 12px; font-weight: 800; color: white;
+  box-shadow: 0 0 0 3px white;
+}
+
+.depAddrBox {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 10px; padding: 8px 12px; margin: 0 12px 6px;
+  display: flex; flex-direction: column; gap: 4px; flex-shrink: 0;
+}
+.depAddrLabel { font-family: var(--font-body); font-size: 8px; color: rgba(255,255,255,0.3); text-transform: uppercase; letter-spacing: 0.8px; }
+.depAddrRow { display: flex; justify-content: space-between; align-items: center; }
+.depAddr { font-family: monospace; font-size: 11px; color: white; letter-spacing: 0.5px; }
+.depCopyBtn {
+  background: rgba(123,79,191,0.2); border: 1px solid rgba(123,79,191,0.3);
+  border-radius: 6px; padding: 3px 8px;
+  font-family: var(--font-body); font-size: 8px; font-weight: 600; color: var(--accent-purple-light);
+}
+.depNote { font-family: var(--font-body); font-size: 8px; color: rgba(255,255,255,0.25); text-align: center; line-height: 1.5; padding: 0 16px; flex-shrink: 0; }
+
+/* Deposit confirmed */
+.depConfirmRing {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: rgba(123,79,191,0.08); border: 2px solid rgba(123,79,191,0.3);
+  display: flex; align-items: center; justify-content: center;
+}
+.depConfirmInner {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, #7B4FBF, #5B2F9F);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(123,79,191,0.5);
+}
+.depConfirmIcon { font-size: 16px; color: white; font-weight: 700; }
+
+.depCreditRow {
+  background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 12px; padding: 8px 11px; width: 100%;
+  display: flex; flex-direction: column; gap: 5px;
+}
+.depCreditItem { display: flex; justify-content: space-between; align-items: center; }
+.depCreditLabel { font-family: var(--font-body); font-size: 8px; color: rgba(255,255,255,0.35); }
+.depCreditVal { font-family: var(--font-body); font-size: 10px; font-weight: 700; color: white; }
+.depCreditValGreen { font-family: var(--font-body); font-size: 10px; font-weight: 700; color: #4ADE80; }
+.depCreditDivider { height: 1px; background: rgba(255,255,255,0.05); }
+
+/* ── Responsive scaling ───────────────────────────────────── */
+/*
+  Instead of trying to resize every element, we scale the entire phone
+  using transform. This keeps all px values correct and proportional.
+*/
+@media (max-width: 1100px) {
+  .inner { grid-template-columns: 1fr 300px; gap: clamp(28px, 4vw, 48px); }
+}
+
+@media (max-width: 860px) {
+  .inner {
+    grid-template-columns: 1fr;
+    padding-top: clamp(96px, 13vw, 120px);
+    padding-bottom: clamp(48px, 7vw, 72px);
+    text-align: center; gap: 48px;
+  }
+  .left { align-items: center; max-width: 100%; }
+  .sub { text-align: center; max-width: 480px; }
+  .ctaRow { justify-content: center; }
+  .stats { justify-content: center; }
+  .right { justify-content: center; }
+  .chipTL, .chipBL, .chipTR, .chipBR { display: none; }
+  /* Scale phone down on tablet */
+  .phoneScene { transform: scale(0.88); transform-origin: center top; }
+}
+
+@media (max-width: 560px) {
+  .inner { padding-left: 20px; padding-right: 20px; }
+  .headline { font-size: clamp(32px, 10vw, 48px); }
+  .ctaRow { flex-direction: column; align-items: stretch; }
+  .primaryBtn, .ghostBtn { text-align: center; justify-content: center; }
+  .stats { gap: 16px; }
+  /* Scale phone down more on mobile */
+  .phoneScene { transform: scale(0.72); transform-origin: center top; }
+}
+
+@media (max-width: 380px) {
+  .phoneScene { transform: scale(0.62); transform-origin: center top; }
+}
+
+/* ── Light mode ───────────────────────────────────────────── */
+[data-theme="light"] .eyebrow {
+  background: rgba(123,79,191,0.08); border-color: rgba(123,79,191,0.2); color: var(--accent-purple);
+}
+[data-theme="light"] .ghostBtn { border-color: rgba(0,0,0,0.15); color: rgba(0,0,0,0.5); }
+[data-theme="light"] .ghostBtn:hover { border-color: rgba(0,0,0,0.3); color: var(--text-primary); }
+[data-theme="light"] .stats { border-top-color: rgba(0,0,0,0.08); }
+[data-theme="light"] .chip2 {
+  background: rgba(255,255,255,0.96); border-color: rgba(123,79,191,0.15);
+  box-shadow: 0 8px 28px rgba(123,79,191,0.14);
+}
+[data-theme="light"] .chipLabel { color: #0D0D0D; }
+[data-theme="light"] .chipAmt { color: rgba(0,0,0,0.4); }
+[data-theme="light"] .phone {
+  background: linear-gradient(175deg, #2A2535 0%, #1A1525 30%, #0E0B18 70%, #080610 100%);
+}

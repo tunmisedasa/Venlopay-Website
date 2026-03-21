@@ -1,0 +1,225 @@
+.section {
+  background: var(--bg-secondary);
+  padding: 120px 0;
+}
+
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.cardStack {
+  position: relative;
+  width: 340px;
+  height: 214px;
+  perspective: 800px;
+}
+
+.card {
+  position: absolute;
+  width: 340px;
+  height: 214px;
+  border-radius: 16px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  overflow: hidden;
+}
+
+.cardLogo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cardWordmark {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  color: white;
+}
+
+.cardChip {
+  display: flex;
+  align-items: center;
+}
+
+.chipRect {
+  width: 32px;
+  height: 24px;
+  background: linear-gradient(135deg, #d4af37, #f5d060);
+  border-radius: 4px;
+  opacity: 0.8;
+}
+
+.cardBottom {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cardName {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  font-family: var(--font-body);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.cardNum {
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  font-family: monospace;
+  letter-spacing: 2px;
+}
+
+.shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.08) 50%, transparent 60%);
+  background-size: 200% 200%;
+  animation: shimmer 3s ease-in-out infinite;
+  border-radius: 16px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #333;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.dotActive {
+  background: var(--accent-purple);
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pill {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid #2A2A2A;
+  border-radius: 50px;
+  padding: 6px 16px;
+  width: fit-content;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.15;
+}
+
+.sub {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.features {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.featureRow {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.featureIcon {
+  width: 40px;
+  height: 40px;
+  background: rgba(123,79,191,0.1);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.featureTitle {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.featureDesc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.cta {
+  display: inline-block;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px 24px;
+  border: 1px solid var(--accent-purple);
+  border-radius: 50px;
+  text-decoration: none;
+  width: fit-content;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.cta:hover { background: var(--accent-purple); color: white; }
+
+@media (max-width: 1024px) {
+  .inner { grid-template-columns: 1fr; gap: 60px; }
+  .left { order: 2; }
+  .right { order: 1; }
+}
+
+@media (max-width: 768px) {
+  .section { padding: 80px 0; }
+  .inner { padding: 0 20px; }
+  .cardStack { width: 280px; height: 176px; }
+  .card { width: 280px; height: 176px; }
+}

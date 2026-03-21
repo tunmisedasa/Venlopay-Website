@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Syne:wght@700;800&display=swap');
+
+/* ── Dark mode (default) ─────────────────────────────────── */
+:root,
+[data-theme="dark"] {
+  --bg-primary: #080808;
+  --bg-secondary: #0D0D0D;
+  --bg-card: #111111;
+  --bg-card-hover: #161616;
+  --bg-footer: #050505;
+  --bg-strip: #0D0D0D;
+  --text-primary: #FFFFFF;
+  --text-secondary: #888888;
+  --text-muted: #444444;
+  --accent-purple: #7B4FBF;
+  --accent-purple-light: #9B6FDF;
+  --accent-purple-dark: #5B2F9F;
+  --border-subtle: #1A1A1A;
+  --border-mid: #222222;
+  --success: #22C55E;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --shadow-card: 0 24px 64px rgba(0,0,0,0.6);
+  --glow-purple: rgba(123,79,191,0.18);
+  --noise-opacity: 0.025;
+  --cta-bg: white;
+  --cta-color: #080808;
+  --cta-hover: #e8e8e8;
+}
+
+/* ── Light mode ──────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg-primary: #F8F7FF;
+  --bg-secondary: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F3F0FF;
+  --bg-footer: #0D0D0D;
+  --bg-strip: #FFFFFF;
+  --text-primary: #0D0D0D;
+  --text-secondary: #555555;
+  --text-muted: #999999;
+  --border-subtle: #E8E4F0;
+  --border-mid: #D8D0EC;
+  --shadow-card: 0 8px 32px rgba(123,79,191,0.1);
+  --glow-purple: rgba(123,79,191,0.08);
+  --noise-opacity: 0.012;
+  --cta-bg: #0D0D0D;
+  --cta-color: #FFFFFF;
+  --cta-hover: #1a1a1a;
+}
+
+/* ── Reset ───────────────────────────────────────────────── */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.35s ease, color 0.35s ease;
+}
+
+a { text-decoration: none; color: inherit; }
+button { cursor: pointer; border: none; outline: none; font-family: var(--font-body); }
+input { font-family: var(--font-body); }
+
+/* ── Scroll animation helpers ────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

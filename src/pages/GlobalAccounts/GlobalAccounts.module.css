@@ -1,0 +1,775 @@
+﻿.hero {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: clamp(100px, 13vw, 140px) clamp(20px, 5vw, 56px) clamp(60px, 8vw, 100px);
+}
+
+.heroGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(ellipse, rgba(123,79,191,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.heroInner {
+  max-width: 700px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.pill {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid #2A2A2A;
+  border-radius: 50px;
+  padding: 6px 16px;
+}
+
+.heroHeadline {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 68px);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.heroSub {
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.7vw, 18px);
+  color: var(--text-secondary);
+  max-width: 520px;
+  line-height: 1.6;
+}
+
+.statsStrip {
+  display: flex;
+  gap: 48px;
+  align-items: center;
+  padding: 24px 0;
+  border-top: 1px solid #1A1A1A;
+  border-bottom: 1px solid #1A1A1A;
+  width: 100%;
+  justify-content: center;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.statNum {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.statLabel {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.heroCta {
+  background: var(--cta-bg);
+  color: var(--cta-color);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 36px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.heroCta:hover {
+  background: var(--cta-hover);
+  transform: translateY(-1px);
+}
+
+.formWrap { width: 100%; max-width: 480px; }
+
+/* Sections */
+.accountsSection {
+  background: var(--bg-secondary);
+  padding: clamp(64px, 9vw, 112px) 0;
+}
+
+.depositSection {
+  background: var(--bg-primary);
+  padding: clamp(64px, 9vw, 112px) 0;
+}
+
+.whySection {
+  background: var(--bg-secondary);
+  padding: clamp(64px, 9vw, 112px) 0;
+}
+
+.faqSection {
+  background: var(--bg-primary);
+  padding: clamp(64px, 9vw, 112px) 0;
+}
+
+.ctaSection {
+  background: #080808;
+  padding: clamp(64px, 9vw, 112px) 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.sectionInner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 48px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.sectionHeadline {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 48px);
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.sectionSub {
+  font-family: var(--font-body);
+  font-size: 18px;
+  color: var(--text-secondary);
+  text-align: center;
+  max-width: 700px;
+  line-height: 1.7;
+}
+
+.globalStatement {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.flagsPill {
+  margin: 8px 0;
+}
+
+.flagsLabel {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--accent-purple-light);
+  background: rgba(123,79,191,0.1);
+  border: 1px solid rgba(123,79,191,0.3);
+  border-radius: 50px;
+  padding: 5px 14px;
+}
+
+.accountCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+.accountCard {
+  background: var(--bg-card);
+  border: 1px solid #2A2A2A;
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.accountCard:hover {
+  border-color: rgba(123,79,191,0.4);
+  transform: translateY(-4px);
+}
+
+.accTop {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.accFlag { font-size: 28px; }
+
+.accCountry {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.accName {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.flagshipBadge {
+  margin-left: auto;
+  font-size: 10px;
+  font-family: var(--font-body);
+  color: var(--accent-purple-light);
+  background: rgba(123,79,191,0.1);
+  border: 1px solid rgba(123,79,191,0.3);
+  border-radius: 50px;
+  padding: 3px 10px;
+  white-space: nowrap;
+}
+
+.accDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: monospace;
+  background: rgba(255,255,255,0.03);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.railsRow {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.railChip {
+  font-size: 11px;
+  font-family: var(--font-body);
+  color: var(--success);
+  background: rgba(34,197,94,0.1);
+  border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 50px;
+  padding: 3px 10px;
+}
+
+.accBody {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.everyoneText {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 22px;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.comingSoon {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  text-align: center;
+}
+
+/* Deposit methods */
+.depositMethods {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  width: 100%;
+}
+
+.depositRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+}
+
+.depositRow:nth-child(even) .depositLeft { order: 2; }
+.depositRow:nth-child(even) .depositRight { order: 1; }
+
+.depositLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.depositLabel {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--accent-purple-light);
+}
+
+.depositTitle {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.depositDesc {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.featureList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.checkMark {
+  color: var(--success);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.depositRight {
+  display: flex;
+  justify-content: center;
+}
+
+.mockupBox {
+  background: var(--bg-card);
+  border: 1px solid #2A2A2A;
+  border-radius: 20px;
+  padding: 24px;
+  width: 100%;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.mockupHeader {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.mockupContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mockupBar {
+  height: 8px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 4px;
+  width: 100%;
+  animation: shimmerBar 2s ease-in-out infinite;
+}
+
+@keyframes shimmerBar {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.mockupStatus {
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--success);
+  font-weight: 600;
+}
+
+/* Why grid */
+.whyGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  width: 100%;
+}
+
+.whyCard {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 32px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.whyCard:hover {
+  border-color: rgba(123,79,191,0.4);
+  transform: translateY(-4px);
+}
+
+.whyIcon {
+  font-size: 28px;
+  margin-bottom: 16px;
+  width: 52px;
+  height: 52px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.whyTitle {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.whyBody {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* FAQ */
+.faqInner {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 48px);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.faqItem {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: border-color 0.3s ease;
+}
+
+.faqOpen { border-color: rgba(123,79,191,0.3); }
+
+.faqQ {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.faqIcon {
+  font-size: 20px;
+  color: var(--text-muted);
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.faqIconOpen {
+  transform: rotate(45deg);
+  color: var(--accent-purple);
+}
+
+.faqA {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  padding: 0 24px 20px;
+}
+
+/* CTA */
+.ctaGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(ellipse, rgba(123,79,191,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.ctaInner {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 48px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.ctaHeadline {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.ctaSub {
+  font-family: var(--font-body);
+  font-size: 18px;
+  color: var(--text-secondary);
+}
+
+.ctaBtn {
+  background: var(--cta-bg);
+  color: var(--cta-color);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 16px 40px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.ctaBtn:hover {
+  background: var(--cta-hover);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 1024px) {
+  .accountCards { grid-template-columns: 1fr; }
+  .depositRow { grid-template-columns: 1fr; }
+  .depositRow:nth-child(even) .depositLeft { order: 1; }
+  .depositRow:nth-child(even) .depositRight { order: 2; }
+  .whyGrid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 768px) {
+  .hero { padding: clamp(88px, 12vw, 120px) 20px clamp(48px, 7vw, 80px); }
+  .statsStrip { gap: 24px; }
+  .statNum { font-size: 36px; }
+  .sectionInner { padding: 0 20px; }
+  .faqInner { padding: 0 20px; }
+  .ctaInner { padding: 0 20px; }
+  .accountsSection, .depositSection, .whySection, .faqSection, .ctaSection { padding: clamp(48px, 7vw, 80px) 0; }
+}
+
+
+/* ── Deposit mockup upgrades ─────────────────────────────── */
+.depositMockup {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 340px;
+}
+.depositMockupHead {
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 10px 14px;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+.depositMockupBody {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.depositMockupRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.depositMockupLeft {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: rgba(255,255,255,0.6);
+}
+.depositMockupRight {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  color: #4ADE80;
+}
+.depositMockupDivider {
+  height: 1px;
+  background: rgba(255,255,255,0.05);
+}
+.depositMockupNote {
+  font-family: var(--font-body);
+  font-size: 9px;
+  color: rgba(255,255,255,0.25);
+  text-align: center;
+  padding: 6px 14px 10px;
+}
+.depositMockupAddr {
+  font-family: monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 6px;
+  padding: 5px 8px;
+  flex: 1;
+}
+.depositMockupCopy {
+  font-family: var(--font-body);
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--accent-purple-light);
+  background: rgba(123,79,191,0.12);
+  border: 1px solid rgba(123,79,191,0.25);
+  border-radius: 5px;
+  padding: 3px 7px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.depositMockupChip {
+  font-family: var(--font-body);
+  font-size: 9px;
+  color: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 50px;
+  padding: 2px 7px;
+}
+.depositMockupDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #26A17B;
+  flex-shrink: 0;
+}
+.depositMockupArrow {
+  text-align: center;
+  font-size: 14px;
+  color: rgba(255,255,255,0.2);
+  padding: 2px 0;
+}
+.depositMockupStatus {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  color: #4ADE80;
+  padding: 6px 14px 10px;
+}
+.depositMockupStatusDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #4ADE80;
+}
+
+/* ── Why card data rows ───────────────────────────────────── */
+.whyDataRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.whyDataChip {
+  font-family: var(--font-body);
+  font-size: 10px;
+  color: rgba(255,255,255,0.45);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 50px;
+  padding: 3px 9px;
+}
+
+/* ── Account detail copy ─────────────────────────────────── */
+.accDetailRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.accDetailVal {
+  font-family: monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  flex: 1;
+}
+.accDetailCopy {
+  font-family: var(--font-body);
+  font-size: 8px;
+  font-weight: 600;
+  color: var(--accent-purple-light);
+  background: rgba(123,79,191,0.1);
+  border: 1px solid rgba(123,79,191,0.2);
+  border-radius: 4px;
+  padding: 2px 6px;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.accDetailDivider {
+  height: 1px;
+  background: rgba(255,255,255,0.05);
+  margin: 2px 0;
+}

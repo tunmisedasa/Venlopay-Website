@@ -1,0 +1,179 @@
+/*
+  Global light mode overrides for all inner pages.
+  Targets hardcoded dark values that CSS variables don't cover.
+  Imported once in main.jsx.
+*/
+
+/* ── Typography: white → dark ─────────────────────────────── */
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4 {
+  color: var(--text-primary);
+}
+
+/* ── Pills / tags ─────────────────────────────────────────── */
+[data-theme="light"] [class*="pill"] {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.1);
+  color: var(--text-muted);
+}
+
+/* ── Cards / panels with hardcoded dark bg ────────────────── */
+[data-theme="light"] [class*="faqItem"],
+[data-theme="light"] [class*="methodCard"],
+[data-theme="light"] [class*="whyCard"],
+[data-theme="light"] [class*="mgmtCard"],
+[data-theme="light"] [class*="step"]:not([class*="stepNum"]):not([class*="stepTitle"]):not([class*="stepBody"]):not([class*="stepIcon"]):not([class*="stepsCta"]):not([class*="stepBody"]),
+[data-theme="light"] [class*="useCaseCard"],
+[data-theme="light"] [class*="stablecoinCard"],
+[data-theme="light"] [class*="settlementCard"],
+[data-theme="light"] [class*="txCard"],
+[data-theme="light"] [class*="accountCard"],
+[data-theme="light"] [class*="mockupBox"],
+[data-theme="light"] [class*="dashboardMockup"] {
+  background: var(--bg-card);
+  border-color: var(--border-subtle);
+}
+
+/* ── Hardcoded border colors ──────────────────────────────── */
+[data-theme="light"] [class*="txHeader"],
+[data-theme="light"] [class*="txFooter"] {
+  border-color: var(--border-subtle);
+}
+
+/* ── Flow diagram ─────────────────────────────────────────── */
+[data-theme="light"] [class*="flowDiagram"],
+[data-theme="light"] [class*="receiveCard"],
+[data-theme="light"] [class*="flowNodeIcon"] {
+  background: rgba(0,0,0,0.03);
+  border-color: rgba(0,0,0,0.08);
+}
+
+/* ── Stats strip ──────────────────────────────────────────── */
+[data-theme="light"] [class*="statsStrip"] {
+  border-color: var(--border-subtle);
+}
+
+/* ── Dashboard mockup ─────────────────────────────────────── */
+[data-theme="light"] [class*="dashHeader"] {
+  background: rgba(0,0,0,0.04);
+  border-color: var(--border-subtle);
+}
+
+[data-theme="light"] [class*="dashPayRow"] {
+  background: rgba(0,0,0,0.02);
+  border-color: var(--border-subtle);
+}
+
+[data-theme="light"] [class*="dashBalance"] {
+  background: rgba(123,79,191,0.06);
+  border-color: rgba(123,79,191,0.15);
+}
+
+[data-theme="light"] [class*="dashBalanceAmount"],
+[data-theme="light"] [class*="dashPayName"],
+[class*="dashPayAmount"] {
+  color: var(--text-primary);
+}
+
+/* ── Comparison table ─────────────────────────────────────── */
+[data-theme="light"] [class*="comparisonTable"] {
+  background: var(--bg-card);
+  border-color: var(--border-subtle);
+}
+
+[data-theme="light"] [class*="tableHeader"] {
+  background: rgba(0,0,0,0.03);
+  border-color: var(--border-subtle);
+}
+
+[data-theme="light"] [class*="tableRow"] {
+  border-color: var(--border-subtle);
+}
+
+[data-theme="light"] [class*="tableVenlopayVal"],
+[data-theme="light"] [class*="txFrom"],
+[data-theme="light"] [class*="txTo"],
+[data-theme="light"] [class*="txValue"],
+[data-theme="light"] [class*="receiveName"],
+[data-theme="light"] [class*="receiveAmount"],
+[data-theme="light"] [class*="accName"],
+[data-theme="light"] [class*="scSymbol"],
+[data-theme="light"] [class*="methodTitle"],
+[data-theme="light"] [class*="whyTitle"],
+[data-theme="light"] [class*="useCaseTitle"],
+[data-theme="light"] [class*="settlementTitle"],
+[data-theme="light"] [class*="stepTitle"],
+[data-theme="light"] [class*="mgmtTitle"],
+[data-theme="light"] [class*="depositTitle"],
+[data-theme="light"] [class*="faqQ"],
+[data-theme="light"] [class*="ctaHeadline"],
+[data-theme="light"] [class*="heroHeadline"],
+[data-theme="light"] [class*="sectionHeadline"],
+[data-theme="light"] [class*="globalStatement"],
+[data-theme="light"] [class*="everyoneText"],
+[data-theme="light"] [class*="dashBalanceAmount"] {
+  color: var(--text-primary);
+}
+
+/* ── Mockup bars ──────────────────────────────────────────── */
+[data-theme="light"] [class*="mockupBar"] {
+  background: rgba(0,0,0,0.08);
+}
+
+/* ── Method/use case tags ─────────────────────────────────── */
+[data-theme="light"] [class*="methodTag"],
+[data-theme="light"] [class*="useCaseTag"],
+[data-theme="light"] [class*="scChain"],
+[data-theme="light"] [class*="showcaseTag"] {
+  background: rgba(0,0,0,0.04);
+  border-color: rgba(0,0,0,0.1);
+}
+
+/* ── CTA sections ─────────────────────────────────────────── */
+[data-theme="light"] [class*="ctaSection"] {
+  background: var(--bg-secondary);
+}
+
+/* ── All primary CTA buttons → use CSS variable ───────────── */
+[data-theme="light"] [class*="heroCta"],
+[data-theme="light"] [class*="ctaBtn"],
+[data-theme="light"] [class*="stepsCta"] {
+  background: var(--cta-bg);
+  color: var(--cta-color);
+  box-shadow: none;
+}
+
+[data-theme="light"] [class*="heroCta"]:hover,
+[data-theme="light"] [class*="ctaBtn"]:hover,
+[data-theme="light"] [class*="stepsCta"]:hover {
+  background: var(--cta-hover);
+  box-shadow: none;
+  transform: translateY(-1px);
+}
+
+/* ── Accents details ──────────────────────────────────────── */
+[data-theme="light"] [class*="accDetails"] {
+  background: rgba(0,0,0,0.03);
+}
+
+/* ── Card dots ────────────────────────────────────────────── */
+[data-theme="light"] [class*="dot"]:not([class*="dotActive"]):not([class*="liveDot"]):not([class*="dashDot"]):not([class*="eyebrowDot"]) {
+  background: rgba(0,0,0,0.15);
+}
+
+/* ── Feature big num ──────────────────────────────────────── */
+[data-theme="light"] [class*="featureBigNum"] {
+  color: rgba(0,0,0,0.04);
+}
+
+/* ── Feature row border ───────────────────────────────────── */
+[data-theme="light"] [class*="featureRow"] {
+  border-bottom-color: var(--border-subtle);
+}
+
+/* ── Carousel dots ────────────────────────────────────────── */
+[data-theme="light"] [class*="carouselDot"]:not([class*="Active"]) {
+  background: rgba(0,0,0,0.15);
+}

@@ -1,0 +1,157 @@
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  transition: background 0.3s, border-color 0.3s, backdrop-filter 0.3s;
+  border-bottom: 1px solid transparent;
+}
+
+.nav.scrolled {
+  background: rgba(8,8,8,0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom-color: var(--border-subtle);
+}
+
+[data-theme="light"] .nav.scrolled {
+  background: rgba(248,247,255,0.92);
+}
+
+[data-theme="light"] .link { color: var(--text-secondary); }
+[data-theme="light"] .link:hover,
+[data-theme="light"] .link.active { color: var(--text-primary); }
+[data-theme="light"] .loginLink { color: var(--text-secondary); }
+[data-theme="light"] .loginLink:hover { color: var(--text-primary); }
+
+[data-theme="light"] .wordmark { color: #0D0D0D; }
+
+[data-theme="light"] .drawerLink { color: var(--text-secondary); }
+[data-theme="light"] .drawerLink:hover { color: var(--text-primary); }
+[data-theme="light"] .drawer { background: var(--bg-primary); }
+
+.inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 48px);
+  height: 68px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.logo {
+  display: flex; align-items: center; gap: 9px; text-decoration: none; flex-shrink: 0;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-size: 17px; font-weight: 700;
+  color: white; letter-spacing: -0.3px;
+}
+
+.links {
+  display: flex; align-items: center; gap: 32px;
+}
+
+.link {
+  font-family: var(--font-body); font-size: 14px; font-weight: 400;
+  color: var(--text-secondary); text-decoration: none;
+  transition: color 0.2s; letter-spacing: 0.1px;
+}
+
+.link:hover, .link.active { color: var(--text-primary); }
+
+.actions {
+  display: flex; align-items: center; gap: 20px;
+}
+
+.loginLink {
+  font-family: var(--font-body); font-size: 14px; font-weight: 400;
+  color: var(--text-secondary); text-decoration: none; transition: color 0.2s;
+}
+
+.loginLink:hover { color: var(--text-primary); }
+
+.ctaBtn {
+  background: var(--cta-bg); color: var(--cta-color);
+  font-family: var(--font-body); font-size: 13px; font-weight: 600;
+  padding: 9px 20px; border-radius: 50px; text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  letter-spacing: 0.1px;
+}
+
+.ctaBtn:hover { background: var(--cta-hover); transform: translateY(-1px); }
+
+.burger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+
+.burger span {
+  display: block; width: 22px; height: 1.5px;
+  background: var(--text-primary); border-radius: 2px; transition: opacity 0.2s;
+}
+
+.themeToggle {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text-secondary);
+  width: 34px; height: 34px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background 0.2s, color 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+}
+
+.themeToggle:hover {
+  background: rgba(255,255,255,0.12);
+  color: var(--text-primary);
+  border-color: rgba(255,255,255,0.2);
+}
+
+[data-theme="light"] .themeToggle {
+  background: rgba(0,0,0,0.05);
+  border-color: rgba(0,0,0,0.1);
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .themeToggle:hover {
+  background: rgba(0,0,0,0.1);
+  color: var(--text-primary);
+}
+
+/* ── Drawer ── */
+.drawer {
+  position: fixed; inset: 0; background: #080808; z-index: 2000;
+  display: flex; flex-direction: column; padding: 24px;
+}
+
+.drawerTop {
+  display: flex; align-items: center; justify-content: space-between; margin-bottom: 48px;
+}
+
+.closeBtn {
+  background: none; border: none; cursor: pointer; padding: 6px;
+  color: white; display: flex; align-items: center;
+}
+
+.drawerLinks {
+  display: flex; flex-direction: column; gap: 0; flex: 1;
+}
+
+.drawerLink {
+  font-family: var(--font-display); font-size: clamp(28px, 8vw, 40px); font-weight: 700;
+  color: var(--text-secondary); text-decoration: none;
+  padding: 14px 0; border-bottom: 1px solid var(--border-subtle);
+  transition: color 0.2s;
+}
+
+.drawerLink:hover { color: var(--text-primary); }
+
+.drawerCta {
+  background: white; color: #080808;
+  font-family: var(--font-body); font-size: 15px; font-weight: 600;
+  padding: 16px; border-radius: 12px; text-decoration: none;
+  text-align: center; margin-top: 32px;
+}
+
+@media (max-width: 860px) {
+  .links { display: none; }
+  .loginLink { display: none; }
+  .ctaBtn { display: none; }
+  .burger { display: flex; }
+}

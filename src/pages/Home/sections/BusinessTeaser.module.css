@@ -1,0 +1,129 @@
+.section {
+  background: var(--bg-primary);
+  padding: 120px 0;
+}
+
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.pill {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid #2A2A2A;
+  border-radius: 50px;
+  padding: 6px 16px;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.sub {
+  font-family: var(--font-body);
+  font-size: 18px;
+  color: var(--text-secondary);
+  text-align: center;
+  max-width: 620px;
+  line-height: 1.7;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  width: 100%;
+  margin-top: 16px;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  padding: 32px;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(123,79,191,0.4);
+  transform: translateY(-4px);
+}
+
+.cardIcon {
+  font-size: 32px;
+  margin-bottom: 16px;
+  width: 52px;
+  height: 52px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardTitle {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.cardBody {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.ctaSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.ctaText {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+.cta {
+  background: var(--accent-purple);
+  color: white;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 32px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.cta:hover {
+  box-shadow: 0 0 24px rgba(123,79,191,0.5);
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .section { padding: 80px 0; }
+  .inner { padding: 0 20px; }
+  .grid { grid-template-columns: 1fr; }
+}

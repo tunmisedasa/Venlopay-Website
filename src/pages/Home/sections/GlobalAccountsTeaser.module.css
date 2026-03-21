@@ -1,0 +1,242 @@
+.section {
+  background: var(--bg-secondary);
+  padding: 120px 0;
+}
+
+.inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.left { display: flex; flex-direction: column; gap: 20px; }
+
+.pill {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid #2A2A2A;
+  border-radius: 50px;
+  padding: 6px 16px;
+  width: fit-content;
+}
+
+.headline {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 3.5vw, 44px);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.15;
+}
+
+.sub {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.flagStrip { display: flex; flex-direction: column; gap: 8px; }
+
+.flagLabel {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+}
+
+.flagMarquee {
+  overflow: hidden;
+  position: relative;
+}
+
+.flagTrack {
+  display: flex;
+  gap: 12px;
+  animation: flagScroll 20s linear infinite;
+  width: max-content;
+}
+
+@keyframes flagScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.flag { font-size: 20px; }
+
+.accountsLabel { margin-top: 4px; }
+
+.accountsPill {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--accent-purple-light);
+  background: rgba(123,79,191,0.1);
+  border: 1px solid rgba(123,79,191,0.3);
+  border-radius: 50px;
+  padding: 5px 14px;
+}
+
+.accountCards {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.accountCard {
+  background: var(--bg-card);
+  border: 1px solid #2A2A2A;
+  border-radius: 16px;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.accountCard:hover {
+  border-color: rgba(123,79,191,0.4);
+}
+
+.accountTop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.accountFlag { font-size: 20px; }
+
+.accountName {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  flex: 1;
+}
+
+.flagBadge {
+  font-size: 10px;
+  font-family: var(--font-body);
+  color: var(--accent-purple-light);
+  background: rgba(123,79,191,0.1);
+  border: 1px solid rgba(123,79,191,0.3);
+  border-radius: 50px;
+  padding: 2px 10px;
+}
+
+.accountDetails {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: monospace;
+}
+
+.railChip {
+  font-size: 11px;
+  font-family: var(--font-body);
+  color: var(--success);
+  background: rgba(34,197,94,0.1);
+  border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 50px;
+  padding: 3px 10px;
+  width: fit-content;
+}
+
+.availableText {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+}
+
+.statement {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--text-primary);
+  line-height: 1.5;
+}
+
+.cta {
+  display: inline-block;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 12px 24px;
+  border: 1px solid var(--accent-purple);
+  border-radius: 50px;
+  text-decoration: none;
+  width: fit-content;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta:hover {
+  background: var(--accent-purple);
+  box-shadow: 0 0 20px rgba(123,79,191,0.3);
+}
+
+.right {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-top: 40px;
+}
+
+.statsCol {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.statNum {
+  font-family: var(--font-display);
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.statLabel {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text-muted);
+}
+
+.mapWrap {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid #1A1A1A;
+  border-radius: 16px;
+  padding: 24px;
+}
+
+.worldMap {
+  width: 100%;
+  height: auto;
+}
+
+@media (max-width: 1024px) {
+  .inner { grid-template-columns: 1fr; gap: 60px; }
+  .right { padding-top: 0; }
+  .statsCol { flex-direction: row; flex-wrap: wrap; gap: 24px; }
+  .statNum { font-size: 48px; }
+}
+
+@media (max-width: 768px) {
+  .section { padding: 80px 0; }
+  .inner { padding: 0 20px; }
+}

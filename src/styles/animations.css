@@ -1,0 +1,107 @@
+/* ── Global animation utilities ───────────────────────────── */
+
+/* Page transition wrapper */
+.page-enter {
+  animation: pageEnter 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Hover lift — applied to cards globally */
+[class*="mgmtCard"]:hover,
+[class*="whyCard"]:hover,
+[class*="useCaseCard"]:hover,
+[class*="stablecoinCard"]:hover,
+[class*="settlementCard"]:hover,
+[class*="txCard"]:hover,
+[class*="accountCard"]:hover,
+[class*="methodCard"]:hover,
+[class*="step"]:hover,
+[class*="bizItem"]:hover {
+  transform: translateY(-4px);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
+}
+
+/* Glow pulse on hero glows */
+[class*="heroGlow"] {
+  animation: glowBreath 6s ease-in-out infinite;
+}
+
+@keyframes glowBreath {
+  0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+  50%       { opacity: 1;   transform: translate(-50%, -50%) scale(1.08); }
+}
+
+/* Shimmer on card faces */
+[class*="shimmer"] {
+  animation: shimmerSlide 3.5s ease-in-out infinite;
+}
+
+@keyframes shimmerSlide {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Floating animation for phone */
+[class*="phone"] {
+  animation: phoneFloat 5.5s ease-in-out infinite;
+}
+
+@keyframes phoneFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-9px); }
+}
+
+/* Stagger children — add class to parent */
+.stagger > * {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: staggerIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger > *:nth-child(2) { animation-delay: 0.12s; }
+.stagger > *:nth-child(3) { animation-delay: 0.19s; }
+.stagger > *:nth-child(4) { animation-delay: 0.26s; }
+.stagger > *:nth-child(5) { animation-delay: 0.33s; }
+.stagger > *:nth-child(6) { animation-delay: 0.40s; }
+
+@keyframes staggerIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Pulse ring — for live indicators */
+@keyframes pulseRing {
+  0%   { transform: scale(1);   opacity: 0.8; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Marquee pause on hover */
+[class*="marquee"]:hover {
+  animation-play-state: paused;
+}
+
+/* Smooth border glow on focus/hover for inputs */
+[class*="input"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(123,79,191,0.2);
+  transition: box-shadow 0.2s ease;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  [class*="heroGlow"],
+  [class*="shimmer"],
+  [class*="phone"],
+  .stagger > *,
+  .page-enter {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
