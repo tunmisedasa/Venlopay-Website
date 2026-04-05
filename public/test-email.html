@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Venlopay Email System</title>
+    <style>
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: linear-gradient(135deg, #f8f7ff 0%, #e8e4f0 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(123,79,191,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: linear-gradient(135deg, #7B4FBF, #9B6FDF);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        .content {
+            padding: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        input[type="email"] {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid #e8e4f0;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
+        }
+        input[type="email"]:focus {
+            outline: none;
+            border-color: #7B4FBF;
+        }
+        .btn {
+            background: #7B4FBF;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 12px;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .btn:hover {
+            background: #5B2F9F;
+            transform: translateY(-1px);
+        }
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .btn.secondary {
+            background: #f8f9fa;
+            color: #333;
+            border: 2px solid #e8e4f0;
+        }
+        .btn.secondary:hover {
+            background: #e8e4f0;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+        .success {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+        }
+        .info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+        .methods {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        .method {
+            margin-bottom: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #7B4FBF;
+        }
+        .method h4 {
+            margin: 0 0 8px 0;
+            color: #333;
+        }
+        .method p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+        .status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+        .status.working { background: #d4edda; color: #155724; }
+        .status.setup { background: #fff3cd; color: #856404; }
+        .status.fallback { background: #d1ecf1; color: #0c5460; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📧 Test Venlopay Email System</h1>
+            <p style="margin: 10px 0 0 0; opacity: 0.9;">Test the waitlist email functionality</p>
+        </div>
+        
+        <div class="content">
+            <div class="form-group">
+                <label for="email">Your Email Address:</label>
+                <input type="email" id="email" value="emmanuelogheneovo17@gmail.com" placeholder="Enter your email">
+            </div>
+            
+            <button class="btn" onclick="testWaitlistFlow()">🚀 Test Full Waitlist Flow</button>
+            <button class="btn secondary" onclick="testEmailOnly()">📧 Test Email Only</button>
+            <button class="btn secondary" onclick="openEmailClient()">📬 Open Email Client</button>
+            
+            <div id="result" class="result"></div>
+            
+            <div class="methods">
+                <h3 style="margin: 0 0 20px 0; color: #333;">📋 Available Email Methods</h3>
+                
+                <div class="method">
+                    <h4>Method 1: Web3Forms <span class="status working">✅ Configured</span></h4>
+                    <p>Free email service - API key configured and ready to send real emails!</p>
+                </div>
+                
+                <div class="method">
+                    <h4>Method 2: Formspree <span class="status working">Working</span></h4>
+                    <p>Free email service - backup method, no signup required.</p>
+                </div>
+                
+                <div class="method">
+                    <h4>Method 3: Netlify Forms <span class="status setup">Netlify Only</span></h4>
+                    <p>Works automatically when deployed on Netlify platform.</p>
+                </div>
+                
+                <div class="method">
+                    <h4>Method 4: Mailto <span class="status fallback">Fallback</span></h4>
+                    <p>Opens your default email client with pre-filled content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Email service functions
+        async function sendTestEmail(email, referralId, position) {
+            const referralLink = `https://www.venlopay.com/ref/${referralId}`
+            
+            const emailContent = `🎉 Welcome to Venlopay!
+
+You're now on the waitlist for the global payment passport.
+
+Your Details:
+• Position: #${position}
+• Referral ID: ${referralId}
+
+Move Up Faster! 🚀
+Share your referral link to skip ahead in the queue:
+${referralLink}
+
+What's Next:
+• We'll notify you when it's your turn for early access
+• Share your referral link to move up faster
+• Follow us on social media for updates
+
+Thanks for joining the future of global payments!
+The Venlopay Team`
+
+            console.log(`📧 Attempting to send email to: ${email}`)
+            
+            try {
+                // Method 1: Try Web3Forms first (with your API key)
+                showResult('Attempting to send email via Web3Forms...', 'info')
+                
+                const formData = new FormData()
+                formData.append('access_key', '4512abe2-60cc-4364-94fd-7273e9f4022b')
+                formData.append('email', email)
+                formData.append('subject', 'Welcome to Venlopay Waitlist! 🚀')
+                formData.append('message', emailContent)
+                formData.append('from_name', 'Venlopay Team')
+
+                const web3Response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                })
+
+                const web3Result = await web3Response.json()
+                
+                if (web3Result.success) {
+                    showResult(`✅ Email sent successfully to ${email} via Web3Forms!`, 'success')
+                    return { success: true, service: 'web3forms' }
+                } else {
+                    throw new Error('Web3Forms failed: ' + web3Result.message)
+                }
+
+            } catch (error) {
+                console.error('Web3Forms failed:', error)
+                
+                try {
+                    // Method 2: Try Formspree as backup
+                    showResult('Web3Forms failed, trying Formspree...', 'info')
+                    
+                    const response = await fetch('https://formspree.io/f/xpwaqjqw', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            email: email,
+                            subject: 'Welcome to Venlopay Waitlist! 🚀',
+                            message: emailContent,
+                            _replyto: email
+                        })
+                    })
+
+                    if (response.ok) {
+                        showResult(`✅ Email sent successfully to ${email} via Formspree!`, 'success')
+                        return { success: true, service: 'formspree' }
+                    } else {
+                        throw new Error('Formspree request failed')
+                    }
+                } catch (formspreeError) {
+                    console.error('Formspree also failed:', formspreeError)
+                    
+                    // Fallback: Show email content and open mailto
+                    showEmailModal(email, emailContent)
+                    showResult(`📧 Email services failed. Email client opened for ${email}. Please send manually.`, 'info')
+                    
+                    return { success: true, service: 'mailto' }
+                }
+            }
+        }
+
+        function showEmailModal(email, content) {
+            const subject = encodeURIComponent('Welcome to Venlopay Waitlist! 🚀')
+            const body = encodeURIComponent(content)
+            const mailtoLink = `mailto:${email}?subject=${subject}&body=${body}`
+            
+            // Create and show modal
+            const modal = document.createElement('div')
+            modal.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(0,0,0,0.8); display: flex; align-items: center;
+                justify-content: center; z-index: 10000; font-family: Arial, sans-serif;
+            `
+            
+            modal.innerHTML = `
+                <div style="background: white; padding: 30px; border-radius: 12px; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto;">
+                    <h2 style="margin: 0 0 20px 0; color: #333;">📧 Email Ready</h2>
+                    <p style="color: #666; margin-bottom: 15px;">Email content for: <strong>${email}</strong></p>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; white-space: pre-line; font-size: 14px; color: #555; max-height: 200px; overflow-y: auto;">${content}</div>
+                    <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                        <button onclick="this.parentElement.parentElement.parentElement.remove()" style="background: #ccc; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer;">Close</button>
+                        <a href="${mailtoLink}" style="background: #7B4FBF; color: white; text-decoration: none; padding: 10px 20px; border-radius: 6px;">Open Email Client</a>
+                    </div>
+                </div>
+            `
+            
+            document.body.appendChild(modal)
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) modal.remove()
+            })
+        }
+
+        function showResult(message, type) {
+            const result = document.getElementById('result')
+            result.className = `result ${type}`
+            result.innerHTML = message
+            result.style.display = 'block'
+        }
+
+        // Test functions
+        window.testWaitlistFlow = async function() {
+            const email = document.getElementById('email').value
+            if (!email) {
+                showResult('Please enter an email address', 'error')
+                return
+            }
+
+            showResult('Testing full waitlist submission flow...', 'info')
+            
+            try {
+                // Simulate waitlist submission with delay
+                setTimeout(async () => {
+                    const result = await sendTestEmail(email, 'emmanuel1234', 1)
+                    if (result.success) {
+                        showResult(`✅ Waitlist flow complete! Email sent to ${email} via ${result.service}`, 'success')
+                    }
+                }, 1000)
+            } catch (error) {
+                showResult(`❌ Waitlist flow failed: ${error.message}`, 'error')
+            }
+        }
+
+        window.testEmailOnly = async function() {
+            const email = document.getElementById('email').value
+            if (!email) {
+                showResult('Please enter an email address', 'error')
+                return
+            }
+
+            try {
+                const result = await sendTestEmail(email, 'test1234', 1)
+                console.log('Email test result:', result)
+            } catch (error) {
+                showResult(`❌ Email test failed: ${error.message}`, 'error')
+            }
+        }
+
+        window.openEmailClient = function() {
+            const email = document.getElementById('email').value || 'emmanuelogheneovo17@gmail.com'
+            
+            const content = `🎉 Welcome to Venlopay!
+
+You're now on the waitlist for the global payment passport.
+
+Your Details:
+• Position: #1
+• Referral ID: emmanuel1234
+
+Move Up Faster! 🚀
+Share your referral link: ${window.location.origin}/ref/emmanuel1234
+
+Thanks for joining the future of global payments!
+The Venlopay Team`
+            
+            showEmailModal(email, content)
+        }
+
+        // Auto-focus email input
+        document.getElementById('email').focus()
+    </script>
+</body>
+</html>

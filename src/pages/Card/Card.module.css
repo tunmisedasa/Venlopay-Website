@@ -76,15 +76,19 @@
   position: relative;
   /* intrinsic size based on card: 280px wide, 176px tall + fan spread */
   width: min(280px, 80vw);
-  height: calc(min(280px, 80vw) * 0.72);
+  height: calc(min(280px, 80vw) * 0.8);
   perspective: 900px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .fanSlot {
   position: absolute;
-  top: 0;
-  left: 0;
-  transform-origin: center bottom;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
 }
 
 /* ── Card face ─────────────────────────────────────────────── */
@@ -297,20 +301,26 @@
   align-items: center;
   width: 100%;
   padding: clamp(32px, 4vw, 48px) 0;
-  border-bottom: 1px solid #1A1A1A;
+  border-bottom: 1px solid var(--border-subtle);
 }
 
 .featureRowReverse .featureText { order: 2; }
 .featureRowReverse .featureVisual { order: 1; }
 
-.featureText { display: flex; flex-direction: column; gap: 14px; }
+.featureText { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 14px; 
+  max-width: 100%;
+}
 
 .featureBigNum {
   font-family: var(--font-display);
   font-size: clamp(48px, 7vw, 80px);
   font-weight: 700;
-  color: rgba(255,255,255,0.04);
+  color: var(--text-muted);
   line-height: 1;
+  opacity: 0.3;
 }
 
 .featureTitle {
@@ -318,6 +328,7 @@
   font-size: clamp(22px, 2.8vw, 32px);
   font-weight: 700;
   color: var(--text-primary);
+  line-height: 1.2;
 }
 
 .featureBody {
@@ -325,39 +336,66 @@
   font-size: clamp(14px, 1.5vw, 16px);
   color: var(--text-secondary);
   line-height: 1.7;
+  max-width: 90%;
 }
 
 .featureVisual {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 12px;
+  position: relative;
 }
 
 .featureCardPreview {
   width: min(220px, 55vw);
   transform: rotate(-4deg);
-  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.55));
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.15));
   transition: transform 0.4s ease;
+  z-index: 1;
+}
+
+[data-theme="dark"] .featureCardPreview {
+  filter: drop-shadow(0 20px 40px rgba(0,0,0,0.55));
 }
 
 .featureCardPreview:hover {
   transform: rotate(0deg) scale(1.03);
 }
 
+.featureChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 50px;
+  padding: 6px 12px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  z-index: 2;
+  position: relative;
+}
+
 /* ── Card grid ─────────────────────────────────────────────── */
 .cardGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: clamp(12px, 2vw, 20px);
+  gap: clamp(16px, 2.5vw, 24px);
   width: 100%;
+  max-width: 1000px;
 }
 
 .cardCol {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   transition: transform 0.3s ease;
+  padding: 8px;
 }
 
 .cardCol:hover { transform: translateY(-5px); }
@@ -398,8 +436,9 @@
 .mgmtGrid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(12px, 2vw, 20px);
+  gap: clamp(16px, 2.5vw, 24px);
   width: 100%;
+  max-width: 1000px;
 }
 
 .mgmtCard {
@@ -407,12 +446,16 @@
   border: 1px solid var(--border-subtle);
   border-radius: 18px;
   padding: clamp(20px, 3vw, 32px);
-  transition: border-color 0.3s, transform 0.3s;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
 }
 
 .mgmtCard:hover {
   border-color: rgba(123,79,191,0.35);
   transform: translateY(-3px);
+  box-shadow: var(--shadow-card);
 }
 
 .mgmtIcon {
@@ -446,8 +489,9 @@
 .stepsRow {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: clamp(16px, 3vw, 36px);
+  gap: clamp(20px, 4vw, 40px);
   width: 100%;
+  max-width: 1000px;
 }
 
 .step {
@@ -455,19 +499,22 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  gap: 10px;
+  gap: 12px;
+  padding: 16px;
+  min-height: 220px;
 }
 
 .stepIcon {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   background: rgba(123,79,191,0.12);
   border: 1px solid rgba(123,79,191,0.28);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 24px;
+  margin-bottom: 4px;
 }
 
 .stepTitle {
@@ -611,17 +658,23 @@
 
 /* ── Responsive ────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .cardGrid { grid-template-columns: repeat(2, 1fr); }
-  .featureRow { grid-template-columns: 1fr; gap: 24px; }
+  .cardGrid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .featureRow { grid-template-columns: 1fr; gap: 32px; text-align: center; }
   .featureRowReverse .featureText { order: 1; }
   .featureRowReverse .featureVisual { order: 2; }
   .featureCardPreview { width: min(200px, 60vw); }
+  .featureText { align-items: center; }
+  .featureBody { max-width: 100%; }
 }
 
 @media (max-width: 640px) {
-  .mgmtGrid { grid-template-columns: 1fr; }
-  .stepsRow { grid-template-columns: 1fr; }
-  .cardGrid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .mgmtGrid { grid-template-columns: 1fr; gap: 16px; }
+  .stepsRow { grid-template-columns: 1fr; gap: 24px; }
+  .cardGrid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .cardFanWrap { 
+    height: calc(min(280px, 80vw) * 0.9);
+  }
+  .step { min-height: auto; padding: 12px; }
 }
 
 /* ── Management card mini UIs ────────────────────────────── */

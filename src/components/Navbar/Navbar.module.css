@@ -116,37 +116,86 @@
 
 /* ── Drawer ── */
 .drawer {
-  position: fixed; inset: 0; background: #080808; z-index: 2000;
-  display: flex; flex-direction: column; padding: 24px;
+  position: fixed; 
+  inset: 0; 
+  background: var(--bg-primary); 
+  z-index: 2000;
+  display: flex; 
+  flex-direction: column; 
+  padding: 24px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .drawerTop {
-  display: flex; align-items: center; justify-content: space-between; margin-bottom: 48px;
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  margin-bottom: 48px;
+  flex-shrink: 0;
 }
 
 .closeBtn {
-  background: none; border: none; cursor: pointer; padding: 6px;
-  color: white; display: flex; align-items: center;
+  background: none; 
+  border: none; 
+  cursor: pointer; 
+  padding: 8px;
+  color: var(--text-primary); 
+  display: flex; 
+  align-items: center;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.closeBtn:hover {
+  background: var(--bg-card);
+}
+
+.closeBtn svg {
+  stroke: var(--text-primary);
 }
 
 .drawerLinks {
-  display: flex; flex-direction: column; gap: 0; flex: 1;
+  display: flex; 
+  flex-direction: column; 
+  gap: 0; 
+  flex: 1;
+  min-height: 0;
 }
 
 .drawerLink {
-  font-family: var(--font-display); font-size: clamp(28px, 8vw, 40px); font-weight: 700;
-  color: var(--text-secondary); text-decoration: none;
-  padding: 14px 0; border-bottom: 1px solid var(--border-subtle);
+  font-family: var(--font-display); 
+  font-size: clamp(24px, 6vw, 32px); 
+  font-weight: 700;
+  color: var(--text-secondary); 
+  text-decoration: none;
+  padding: 16px 0; 
+  border-bottom: 1px solid var(--border-subtle);
   transition: color 0.2s;
+  display: block;
 }
 
-.drawerLink:hover { color: var(--text-primary); }
+.drawerLink:hover { 
+  color: var(--text-primary); 
+}
 
 .drawerCta {
-  background: white; color: #080808;
-  font-family: var(--font-body); font-size: 15px; font-weight: 600;
-  padding: 16px; border-radius: 12px; text-decoration: none;
-  text-align: center; margin-top: 32px;
+  background: var(--cta-bg); 
+  color: var(--cta-color);
+  font-family: var(--font-body); 
+  font-size: 15px; 
+  font-weight: 600;
+  padding: 16px; 
+  border-radius: 12px; 
+  text-decoration: none;
+  text-align: center; 
+  margin-top: 32px;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+
+.drawerCta:hover {
+  background: var(--cta-hover);
 }
 
 @media (max-width: 860px) {

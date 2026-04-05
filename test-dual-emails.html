@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Dual Email System - Venlopay</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8f7ff 0%, #e8e4f0 100%);
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(123,79,191,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #7B4FBF, #9B6FDF);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e8e4f0;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        input:focus {
+            outline: none;
+            border-color: #7B4FBF;
+        }
+        .btn {
+            background: #7B4FBF;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .btn:hover {
+            background: #5B2F9F;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            display: none;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        .email-flow {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 12px;
+        }
+        .email-item {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            margin-bottom: 10px;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #7B4FBF;
+        }
+        .email-icon {
+            font-size: 24px;
+            margin-right: 12px;
+        }
+        .email-details h4 {
+            margin: 0 0 4px 0;
+            color: #333;
+        }
+        .email-details p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📧 Test Dual Email System</h1>
+            <p style="margin: 10px 0 0 0; opacity: 0.9;">Test both user confirmation and admin notification emails</p>
+        </div>
+        
+        <div class="form-group">
+            <label for="userEmail">User Email (will receive confirmation):</label>
+            <input type="email" id="userEmail" value="test.user@example.com" placeholder="Enter user email">
+        </div>
+        
+        <div class="form-group">
+            <label for="adminEmail">Admin Email (will receive notification):</label>
+            <input type="email" id="adminEmail" value="emmanuelogheneovo17@gmail.com" placeholder="Enter admin email" readonly>
+        </div>
+        
+        <button class="btn" onclick="testDualEmails()">🚀 Test Both Emails</button>
+        <button class="btn" onclick="testUserEmailOnly()" style="background: #28a745;">📧 Test User Email Only</button>
+        <button class="btn" onclick="testAdminEmailOnly()" style="background: #dc3545;">🚨 Test Admin Email Only</button>
+        
+        <div id="result" class="result"></div>
+        
+        <div class="email-flow">
+            <h3 style="margin: 0 0 20px 0; color: #333;">📋 Email Flow</h3>
+            
+            <div class="email-item">
+                <div class="email-icon">👤</div>
+                <div class="email-details">
+                    <h4>User Confirmation Email (via Formspree)</h4>
+                    <p>Sent to the person who joined the waitlist with their referral link and position</p>
+                </div>
+            </div>
+            
+            <div class="email-item">
+                <div class="email-icon">👨‍💼</div>
+                <div class="email-details">
+                    <h4>Admin Notification Email (via Web3Forms)</h4>
+                    <p>Sent to you (emmanuelogheneovo17@gmail.com) with details about the new signup</p>
+                </div>
+            </div>
+            
+            <div class="email-item">
+                <div class="email-icon">🔗</div>
+                <div class="email-details">
+                    <h4>Referral Notification (if applicable)</h4>
+                    <p>Sent to the referrer when someone uses their referral link</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showResult(message, type) {
+            const result = document.getElementById('result')
+            result.className = `result ${type}`
+            result.innerHTML = message
+            result.style.display = 'block'
+        }
+
+        async function sendUserConfirmation(email, referralId, position) {
+            const referralLink = `https://www.venlopay.com/ref/${referralId}`
+            
+            const emailContent = `🎉 Welcome to Venlopay!
+
+You're now on the waitlist for the global payment passport.
+
+Your Details:
+• Position: #${position}
+• Referral ID: ${referralId}
+
+Move Up Faster! 🚀
+Share your referral link to skip ahead in the queue:
+${referralLink}
+
+What's Next:
+• We'll notify you when it's your turn for early access
+• Share your referral link to move up faster
+• Follow us on social media for updates
+
+Thanks for joining the future of global payments!
+The Venlopay Team`
+
+            console.log(`📧 Sending USER confirmation to: ${email}`)
+
+            try {
+                // Method 1: Try Formspree for user emails (better for different recipients)
+                const response = await fetch('https://formspree.io/f/xpwaqjqw', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        subject: 'Welcome to Venlopay Waitlist! 🚀',
+                        message: emailContent,
+                        _replyto: email,
+                        _subject: 'Welcome to Venlopay Waitlist! 🚀'
+                    })
+                })
+
+                if (response.ok) {
+                    return { success: true, service: 'formspree-user' }
+                } else {
+                    throw new Error('Formspree user email failed')
+                }
+
+            } catch (error) {
+                console.error('User email failed:', error)
+                return { success: false, error: error.message }
+            }
+        }
+
+        async function sendAdminNotification(userEmail, referralId, position) {
+            const adminEmail = 'emmanuelogheneovo17@gmail.com'
+            
+            const emailContent = `🚨 New Waitlist Signup!
+
+A new user has joined the Venlopay waitlist:
+
+User Details:
+• Email: ${userEmail}
+• Position: #${position}
+• Referral ID: ${referralId}
+• Referred by: Direct signup
+• Time: ${new Date().toLocaleString()}
+
+Referral Link: https://www.venlopay.com/ref/${referralId}
+
+Total waitlist members: ${position}
+
+Admin Dashboard: https://www.venlopay.com/admin (when available)
+
+Best regards,
+Venlopay System`
+
+            console.log(`📧 Sending ADMIN notification to: ${adminEmail}`)
+
+            try {
+                // Use Web3Forms for admin (configured for your email)
+                const formData = new FormData()
+                formData.append('access_key', '4512abe2-60cc-4364-94fd-7273e9f4022b')
+                formData.append('name', 'Venlopay System')
+                formData.append('email', adminEmail)
+                formData.append('subject', `New Waitlist Signup: ${userEmail}`)
+                formData.append('message', emailContent)
+                formData.append('from_name', 'Venlopay System')
+
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                })
+
+                const result = await response.json()
+                
+                if (result.success) {
+                    return { success: true, service: 'web3forms-admin' }
+                } else {
+                    throw new Error('Web3Forms admin failed: ' + result.message)
+                }
+
+            } catch (error) {
+                console.error('Admin email failed:', error)
+                return { success: false, error: error.message }
+            }
+        }
+
+        async function testDualEmails() {
+            const userEmail = document.getElementById('userEmail').value
+            if (!userEmail) {
+                showResult('Please enter a user email address', 'error')
+                return
+            }
+
+            showResult('Sending both user confirmation and admin notification emails...', 'info')
+
+            try {
+                const referralId = 'test' + Math.floor(Math.random() * 10000)
+                const position = Math.floor(Math.random() * 100) + 1
+
+                // Send user confirmation
+                const userResult = await sendUserConfirmation(userEmail, referralId, position)
+                console.log('User email result:', userResult)
+
+                // Send admin notification
+                const adminResult = await sendAdminNotification(userEmail, referralId, position)
+                console.log('Admin email result:', adminResult)
+
+                if (userResult.success && adminResult.success) {
+                    showResult(`✅ SUCCESS! Both emails sent:
+                    • User confirmation → ${userEmail}
+                    • Admin notification → emmanuelogheneovo17@gmail.com
+                    
+                    Check both inboxes!`, 'success')
+                } else {
+                    showResult(`⚠️ Partial success:
+                    • User email: ${userResult.success ? '✅' : '❌'}
+                    • Admin email: ${adminResult.success ? '✅' : '❌'}`, 'error')
+                }
+
+            } catch (error) {
+                showResult(`❌ Error: ${error.message}`, 'error')
+            }
+        }
+
+        async function testUserEmailOnly() {
+            const userEmail = document.getElementById('userEmail').value
+            if (!userEmail) {
+                showResult('Please enter a user email address', 'error')
+                return
+            }
+
+            showResult('Sending user confirmation email...', 'info')
+
+            try {
+                const referralId = 'user' + Math.floor(Math.random() * 10000)
+                const result = await sendUserConfirmation(userEmail, referralId, 1)
+
+                if (result.success) {
+                    showResult(`✅ User confirmation email sent to ${userEmail}!`, 'success')
+                } else {
+                    showResult(`❌ Failed to send user email: ${result.message}`, 'error')
+                }
+            } catch (error) {
+                showResult(`❌ Error: ${error.message}`, 'error')
+            }
+        }
+
+        async function testAdminEmailOnly() {
+            const userEmail = document.getElementById('userEmail').value || 'test@example.com'
+
+            showResult('Sending admin notification email...', 'info')
+
+            try {
+                const referralId = 'admin' + Math.floor(Math.random() * 10000)
+                const result = await sendAdminNotification(userEmail, referralId, 1)
+
+                if (result.success) {
+                    showResult(`✅ Admin notification sent to emmanuelogheneovo17@gmail.com!`, 'success')
+                } else {
+                    showResult(`❌ Failed to send admin email: ${result.message}`, 'error')
+                }
+            } catch (error) {
+                showResult(`❌ Error: ${error.message}`, 'error')
+            }
+        }
+
+        // Auto-focus user email input
+        document.getElementById('userEmail').focus()
+    </script>
+</body>
+</html>

@@ -7,6 +7,7 @@ import GlobalAccounts from './pages/GlobalAccounts/GlobalAccounts'
 import Card from './pages/Card/Card'
 import Send from './pages/Send/Send'
 import Business from './pages/Business/Business'
+import Referral from './pages/Referral/Referral'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
             <Route path="/card" element={<Card />} />
             <Route path="/send" element={<Send />} />
             <Route path="/business" element={<Business />} />
+            <Route path="/ref/:referralId" element={<Referral />} />
           </Routes>
         </main>
         <Footer />

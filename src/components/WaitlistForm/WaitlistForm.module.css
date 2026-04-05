@@ -3,75 +3,119 @@
   flex-direction: column;
   gap: 12px;
   width: 100%;
+  max-width: 420px;
+}
+
+.referralNotice {
+  background: rgba(123,79,191,0.1);
+  border: 1px solid rgba(123,79,191,0.3);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text-primary);
+  overflow: hidden;
+}
+
+.referralIcon {
+  font-size: 16px;
+  flex-shrink: 0;
 }
 
 .input {
-  width: 100%;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: var(--font-body);
+  font-size: 14px;
   color: var(--text-primary);
-  font-size: 16px;
-  padding: 14px 16px;
-  border-radius: 12px;
+  transition: border-color 0.2s, background 0.2s;
+  width: 100%;
+}
+
+.input:focus {
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  border-color: var(--accent-purple);
+  background: var(--bg-card-hover);
+}
+
+.input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .input::placeholder {
   color: var(--text-muted);
 }
 
-.input:focus {
-  border-color: var(--accent-purple);
-  box-shadow: 0 0 0 3px rgba(123, 79, 191, 0.15);
-}
-
-.checkboxLabel {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 14px;
-  color: var(--text-secondary);
-  cursor: pointer;
-}
-
-.checkbox {
-  width: 16px;
-  height: 16px;
-  accent-color: var(--accent-purple);
-  cursor: pointer;
+.error {
+  background: rgba(248,113,113,0.1);
+  border: 1px solid rgba(248,113,113,0.3);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: #F87171;
 }
 
 .submitBtn {
-  width: 100%;
-  background: var(--accent-purple);
-  color: white;
-  font-family: var(--font-body);
-  font-size: 16px;
-  font-weight: 600;
-  padding: 14px;
-  border-radius: 50px;
+  background: var(--cta-bg);
+  color: var(--cta-color);
   border: none;
+  border-radius: 8px;
+  padding: 12px 24px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
   cursor: pointer;
-  transition: box-shadow 0.2s ease, transform 0.2s ease;
+  transition: background 0.2s, transform 0.15s, opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
 }
 
-.submitBtn:hover {
-  box-shadow: 0 0 24px rgba(123, 79, 191, 0.5);
-  transform: scale(1.02);
+.submitBtn:hover:not(:disabled) {
+  background: var(--cta-hover);
+  transform: translateY(-1px);
 }
 
-.submitBtn:active {
-  transform: scale(0.98);
+.submitBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.submitting {
+  pointer-events: none;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid currentColor;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 .success {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
   text-align: center;
   width: 100%;
+  max-width: 420px;
 }
 
 .checkIcon {
@@ -80,92 +124,117 @@
 
 .successTitle {
   font-family: var(--font-display);
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
   color: var(--text-primary);
+  margin: 0;
+}
+
+.positionInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  padding: 12px 20px;
+  width: 100%;
+}
+
+.positionLabel {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.positionNumber {
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--accent-purple);
 }
 
 .successSub {
+  font-family: var(--font-body);
   font-size: 14px;
-  color: var(--text-muted);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin: 0;
 }
 
 .referralBox {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--accent-purple);
-  border-radius: 12px;
-  padding: 12px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 8px;
   width: 100%;
 }
 
 .referralLink {
-  flex: 1;
-  font-size: 13px;
+  font-family: var(--font-body);
+  font-size: 12px;
   color: var(--text-secondary);
-  font-family: monospace;
+  flex: 1;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  padding: 4px 8px;
 }
 
 .copyBtn {
-  background: none;
-  border: 1px solid rgba(255,255,255,0.2);
-  color: var(--text-primary);
-  font-size: 13px;
-  padding: 6px 14px;
-  border-radius: 8px;
+  background: var(--accent-purple);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
-  white-space: nowrap;
+  transition: background 0.2s, transform 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
 }
 
 .copyBtn:hover {
-  border-color: var(--accent-purple);
+  background: var(--accent-purple-light);
+  transform: translateY(-1px);
 }
 
-.copyBtn.copied {
-  border-color: var(--success);
-  color: var(--success);
+.copied {
+  background: var(--success);
+}
+
+.copied:hover {
+  background: var(--success);
 }
 
 .tweetBtn {
+  background: #1DA1F2;
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
   display: flex;
   align-items: center;
   gap: 8px;
-  background: #000;
-  color: white;
-  font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 500;
-  padding: 12px 24px;
-  border-radius: 50px;
-  text-decoration: none;
-  transition: box-shadow 0.2s ease;
+  transition: background 0.2s, transform 0.15s;
+  width: 100%;
+  justify-content: center;
 }
 
 .tweetBtn:hover {
-  box-shadow: 0 0 16px rgba(255, 255, 255, 0.15);
-}
-
-/* ─── LIGHT MODE ────────────────────────────────────────────── */
-[data-theme="light"] .input {
-  background: rgba(0,0,0,0.04);
-  border-color: rgba(0,0,0,0.12);
-}
-
-[data-theme="light"] .input:focus {
-  border-color: var(--accent-purple);
-  box-shadow: 0 0 0 3px rgba(123,79,191,0.12);
-}
-
-[data-theme="light"] .referralBox {
-  background: rgba(0,0,0,0.04);
-}
-
-[data-theme="light"] .copyBtn {
-  border-color: rgba(0,0,0,0.2);
+  background: #1991DB;
+  transform: translateY(-1px);
 }

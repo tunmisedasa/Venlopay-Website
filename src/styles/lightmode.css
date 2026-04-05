@@ -165,7 +165,7 @@
 
 /* ── Feature big num ──────────────────────────────────────── */
 [data-theme="light"] [class*="featureBigNum"] {
-  color: rgba(0,0,0,0.04);
+  color: rgba(0,0,0,0.08);
 }
 
 /* ── Feature row border ───────────────────────────────────── */
@@ -176,4 +176,47 @@
 /* ── Carousel dots ────────────────────────────────────────── */
 [data-theme="light"] [class*="carouselDot"]:not([class*="Active"]) {
   background: rgba(0,0,0,0.15);
+}
+
+/* ── Navbar fixes ─────────────────────────────────────────── */
+[data-theme="light"] [class*="burger"] span {
+  background: var(--text-primary);
+}
+
+/* ── Card page specific fixes ─────────────────────────────── */
+[data-theme="light"] [class*="pill"] {
+  background: rgba(0,0,0,0.06);
+  border-color: rgba(0,0,0,0.12);
+  color: var(--text-muted);
+}
+
+[data-theme="light"] [class*="dot"]:not([class*="dotActive"]) {
+  background: rgba(0,0,0,0.2);
+}
+
+[data-theme="light"] [class*="showcaseTag"] {
+  background: rgba(0,0,0,0.06);
+  border-color: rgba(0,0,0,0.12);
+  color: var(--text-muted);
+}
+
+/* ── Management card mini UI fixes ────────────────────────── */
+[data-theme="light"] [class*="mgmtMiniUI"] {
+  border-top-color: var(--border-subtle);
+}
+
+[data-theme="light"] [class*="mgmtNotifRow"],
+[data-theme="light"] [class*="stepMiniInput"],
+[data-theme="light"] [class*="stepMiniUI"] {
+  background: rgba(0,0,0,0.03);
+  border-color: var(--border-subtle);
+}
+
+[data-theme="light"] [class*="mgmtLimitBar"] {
+  background: rgba(0,0,0,0.08);
+}
+
+/* ── Icon backgrounds ─────────────────────────────────────── */
+[data-theme="light"] [class*="mgmtIcon"] {
+  background: rgba(0,0,0,0.06);
 }

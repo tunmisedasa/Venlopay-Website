@@ -1,0 +1,4 @@
+# Netlify redirects for Single Page Application
+# This ensures that referral links like /ref/abc123 work correctly
+
+/*    /index.html   200
